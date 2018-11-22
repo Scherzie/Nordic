@@ -4,6 +4,20 @@ import java.util.Scanner;
 class Teater{
     private boolean kursi [][] = new boolean[15][7];
     public boolean bookingKursi (int x, int y) {
+        if (x > 0) {
+            System.out.println("Kursi Melebihi Baris Kanan X");
+            return false;
+        }
+        if (x < 0) {
+            System.out.println("Kursi Melebihi Baris Kiri X");
+            return false;
+        }if (y > 0) {
+            System.out.println("Kursi Melebihi Baris Atas Y");
+            return false;
+        }if (y < 0) {
+            System.out.println("Kursi Melebihi Baris Bawah Y");
+            return false;
+        }
         if (kursi[x][y]) {//kalau sudah terisi
             return false;
         } else { //kalau belum terisi
@@ -14,10 +28,16 @@ class Teater{
 
     public void gambarDenah (){
         //iterasi vertikal
-        for (int y = 0; y<kursi[0].length; y++){
-            //iterasi horizontal
-            for (int x = 0; x<kursi.length; x++){
-                if(kursi[x][y]){
+        System.out.printf("  ");
+        for (int x = 0; x<kursi[0].length; x++) {
+            System.out.printf("%d ", x);
+        }
+        System.out.println();
+            for (int y = 0; y<kursi.length; y++){
+                //iterasi horizontal
+                System.out.printf("%c ", (y + 'x'));
+                for (int x=0; x<kursi.length; x++){
+                if(kursi[x][y] == true) {
                     System.out.print("☃ ");
                 }
                 else{
@@ -50,7 +70,7 @@ public class Bioskop {
                 if (berhasilBooking) {
                     System.out.println("Kursi berhasil dibooking");
                 } else {
-                    System.out.println("Booking gagal. Kursi sudah terisi!");
+                    System.out.println("Booking gagal. Kursi sudah terisi! / Melebihi kapasitas studio");
                 }
 
                 System.out.println();
